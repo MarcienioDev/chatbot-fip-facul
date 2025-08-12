@@ -1,6 +1,6 @@
 "use client";
 
-import { SendIcon } from "lucide-react";
+import { SendIcon, SquareIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
@@ -19,7 +19,7 @@ export function Chat() {
   const [input, setInput] = useState("");
   const chatEndRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (input.trim()) {
       sendMessage({ text: input });
@@ -37,9 +37,7 @@ export function Chat() {
     <Card className="w-96 h-150 grid grid-rows-[min-content_1fr_min-content]">
       <CardHeader>
         <CardTitle>FIPIA</CardTitle>
-        <CardDescription>
-          Seu orientador vocacional
-        </CardDescription>
+        <CardDescription>Seu orientador vocacional</CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-4 overflow-y-auto">
@@ -68,22 +66,6 @@ export function Chat() {
           </div>
         ))}
 
-        {(status === "submitted" || status === "streaming") && (
-          <div className="flex gap-2 items-center">
-            {status === "submitted" && (
-              <span className="text-xs text-gray-500">Carregando...</span>
-            )}
-            <Button
-              type="button"
-              size="sm"
-              variant="destructive"
-              onClick={stop}
-            >
-              Parar
-            </Button>
-          </div>
-        )}
-
         <div ref={chatEndRef} />
       </CardContent>
 
@@ -95,9 +77,26 @@ export function Chat() {
             onChange={(e) => setInput(e.target.value)}
             disabled={status !== "ready"}
           />
-          <Button type="submit" disabled={status !== "ready"}>
-            <SendIcon />
-          </Button>
+
+          {status === "submitted" || status === "streaming" ? (
+            <Button
+              type="button"
+              size="sm"
+              variant="destructive"
+              onClick={stop}
+              className="w-12 flex justify-center items-center"
+            >
+              <SquareIcon />
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              disabled={status !== "ready"}
+              className="bg-blue-800 w-12 flex justify-center items-center"
+            >
+              <SendIcon />
+            </Button>
+          )}
         </form>
       </CardFooter>
     </Card>
