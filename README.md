@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# FIPIA
 
-First, run the development server:
+FIPIA é um chatbot inteligente desenvolvido como projeto de turma para a faculdade FIP.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tecnologias e Bibliotecas Utilizadas
+- **Next.js**: Framework React para aplicações web modernas.
+- **React**: Biblioteca para construção de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
+- **@ai-sdk/react**: SDK para integração de IA e chatbots em aplicações React.
+- **ESLint**: Ferramenta de linting para manter a qualidade do código.
+- **PostCSS**: Processador de CSS para transformar estilos com plugins JS.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Padrões de Projeto
+- **Componentização**: Componentes reutilizáveis em `src/components`.
+- **Separação de responsabilidades**: Lógica de API em `src/app/api` e componentes de UI em `src/components/ui`.
+- **Organização por pastas**: Estrutura clara para facilitar manutenção e escalabilidade.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup e Configuração
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone o repositório:**
+	```sh
+	git clone <url-do-repositorio>
+	cd chatbot-fip
+	```
 
-## Learn More
+2. **Instale as dependências:**
+	```sh
+	npm install
+	```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Configure variáveis de ambiente:**
+	- Renomeie `.env.local.example` para `.env.local` (se existir) e preencha as variáveis necessárias.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Execute o projeto em modo desenvolvimento:**
+	```sh
+	npm run dev
+	```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Acesse no navegador:**
+	- Abra `http://localhost:3000`
 
-## Deploy on Vercel
+## Observações
+- O projeto foi desenvolvido para fins acadêmicos.
+- Para dúvidas técnicas, consulte a documentação das bibliotecas utilizadas.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Projeto desenvolvido por mim.
