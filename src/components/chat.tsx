@@ -8,6 +8,7 @@ import { Input } from "./ui/input";
 import { useState, useEffect, useRef } from "react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
+import { BtnReload } from "./btnReload";
 
 export function Chat() {
   const { messages, sendMessage, status, stop } = useChat({
@@ -17,7 +18,7 @@ export function Chat() {
   });
 
   const [input, setInput] = useState("");
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -28,19 +29,23 @@ export function Chat() {
   };
 
   useEffect(() => {
-    if (chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages]);
 
   return (
-    <Card className="w-96 h-150 grid grid-rows-[min-content_1fr_min-content]">
+    <Card className="w-full max-w-6xl h-[80vh] mx-auto grid grid-rows-[min-content_1fr_min-content]">
       <CardHeader>
         <CardTitle>FIPIA</CardTitle>
         <CardDescription>Seu orientador vocacional</CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-4 overflow-y-auto">
+      {/* Aqui o scroll fica preso só no chat */}
+      <CardContent
+        ref={chatContainerRef}
+        className="space-y-4 overflow-y-auto"
+      >
         {messages.map((message) => (
           <div key={message.id} className="flex gap-2 text-slate-600 text-sm">
             {message.role === "user" && (
@@ -65,8 +70,6 @@ export function Chat() {
             </p>
           </div>
         ))}
-
-        <div ref={chatEndRef} />
       </CardContent>
 
       <CardFooter>
@@ -97,6 +100,8 @@ export function Chat() {
               <SendIcon />
             </Button>
           )}
+
+          <BtnReload />
         </form>
       </CardFooter>
     </Card>
